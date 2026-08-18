@@ -19,12 +19,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 22
+          # 用 Node 24（自带 npm 11）：npm 10 有可选依赖安装 bug（npm/cli#4828），
+          # 会导致 rolldown 等原生绑定装不上，构建失败。
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
