@@ -13,7 +13,7 @@
 
 ```bash
 npm install
-npm run dev        # 打开 http://localhost:4321/my_github_website/
+npm run dev        # 打开 http://localhost:4321/ponder/
 ```
 
 构建生产版本：
@@ -54,10 +54,10 @@ draft: false   # 改成 true 可暂时不发布
 
 ### 1. 创建 GitHub 仓库并推送
 
-在 GitHub 网页上新建仓库（仓库名建议用 `my_github_website`，与本地一致），然后：
+在 GitHub 网页上新建仓库（仓库名建议用 `ponder`，与本地一致），然后：
 
 ```bash
-git remote add origin https://github.com/<你的用户名>/my_github_website.git
+git remote add origin https://github.com/<你的用户名>/ponder.git
 git branch -M main
 git push -u origin main
 ```
@@ -70,7 +70,7 @@ git push -u origin main
 
 ### 3. 访问地址
 
-- 项目站点：`https://<你的用户名>.github.io/my_github_website/`
+- 项目站点：`https://<你的用户名>.github.io/ponder/`
 - 用户站点：如果你想用 `https://<你的用户名>.github.io` 作为主地址，把仓库改名为 `<你的用户名>.github.io`，并把 `astro.config.mjs` 里的 `base` 改成 `"/"`。
 
 > 推送前记得把 `astro.config.mjs` 里的占位符 `<你的GitHub用户名>` 换成真实的用户名。

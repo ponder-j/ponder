@@ -4,5 +4,5 @@ import { defineConfig } from "astro/config";
 // 如果你的仓库叫 <用户名>.github.io（用户站点），把 base 改成 "/"
 export default defineConfig({
   site: "https://ponder-j.github.io",
-  base: "/my_github_website/",
+  base: "/ponder/",
 });
