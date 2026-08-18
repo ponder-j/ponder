@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import PostCard from "../components/PostCard.astro";
+import { SITE, withBase } from "../config";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <div class="container">
+    <section class="hero">
+      <p class="hello">你好，我是 👋</p>
+      <h1>{SITE.name}</h1>
+      <p class="role">{SITE.role}</p>
+      <p class="bio">{SITE.bio}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href={withBase("/projects")}>查看项目</a>
+        <a class="btn btn-ghost" href={withBase("/about")}>关于我</a>
+        <a class="btn btn-ghost" href={`mailto:${SITE.email}`}>联系我</a>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">关于我</h2>
+      <div class="card">
+        <p>
+          我是一名开发者，喜欢研究 Web 技术、折腾开源工具，也偶尔写点文字记录生活。
+          这个网站用 <strong>Astro</strong> 构建，托管在 GitHub Pages 上。
+        </p>
+        <p><a href={withBase("/about")}>了解更多 →</a></p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">最新项目</h2>
+      <ProjectCard
+        title="我的个人网站"
+        description="你现在看到的这个网站：基于 Astro 构建，零 JavaScript 运行时开销，自动部署到 GitHub Pages。"
+        tags={["Astro", "GitHub Pages"]}
+        demo={withBase("/")}
+        repo={SITE.github}
+      />
+      <ProjectCard
+        title="示例项目"
+        description="在这里展示你的开源项目或作品。点击下方「项目」页面查看完整列表，也可以直接编辑 src/content 下的内容来添加更多项目。"
+        tags={["示例"]}
+        repo={SITE.github}
+      />
+      <p style="margin-top:16px"><a href={withBase("/projects")}>查看全部项目 →</a></p>
+    </section>
+
+    <section>
+      <h2 class="section-title">最新文章</h2>
+      {
+        posts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            tags={post.data.tags}
+            href={withBase(`/blog/${post.id}`)}
+          />
+        ))
+      }
+      <p style="margin-top:16px"><a href={withBase("/blog")}>查看全部文章 →</a></p>
+    </section>
+  </div>
+</BaseLayout>

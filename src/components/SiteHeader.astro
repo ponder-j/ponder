@@ -1,0 +1,25 @@
+---
+import { SITE, NAV_LINKS, withBase } from "../config";
+
+const { pathname } = Astro.url;
+---
+
+<header class="site-header">
+  <nav class="nav" aria-label="主导航">
+    <a class="nav-brand" href={withBase("/")}>{SITE.name}</a>
+    <ul class="nav-links">
+      {
+        NAV_LINKS.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={{ active: pathname === link.href }}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

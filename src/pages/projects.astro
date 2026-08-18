@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { SITE, withBase } from "../config";
+
+const projects = [
+  {
+    title: "我的个人网站",
+    description:
+      "你现在看到的这个网站：基于 Astro 构建，零 JS 运行时开销，通过 GitHub Actions 自动部署到 GitHub Pages。",
+    tags: ["Astro", "GitHub Pages", "TypeScript"],
+    demo: withBase("/"),
+    repo: SITE.github,
+  },
+  {
+    title: "示例项目 A",
+    description:
+      "占位项目。把你的真实项目放进来：在 src/pages/projects.astro 里加一条记录即可。",
+    tags: ["示例"],
+    repo: SITE.github,
+  },
+  {
+    title: "示例项目 B",
+    description:
+      "占位项目。可以给每个项目加上 tags（技术栈）和 demo / repo 链接。",
+    tags: ["示例"],
+    repo: SITE.github,
+  },
+];
+---
+
+<BaseLayout title="项目" description="我的开源项目与作品。">
+  <div class="container">
+    <header class="page-head">
+      <h1>项目</h1>
+      <p>我做过的一些东西，正在不断完善中。</p>
+    </header>
+
+    <section>
+      {
+        projects.map((project) => (
+          <ProjectCard {...project} />
+        ))
+      }
+    </section>
+  </div>
+</BaseLayout>

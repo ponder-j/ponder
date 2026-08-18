@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../config";
+---
+
+<BaseLayout title="关于我" description="关于 Ponder J 的介绍。">
+  <div class="container">
+    <header class="page-head">
+      <h1>关于我</h1>
+      <p>认识一下，看看我在做什么。</p>
+    </header>
+
+    <section>
+      <div class="card">
+        <p>
+          你好，我是 <strong>{SITE.name}</strong>，{SITE.role}。
+          这里是我在互联网上的一个小角落，用来记录我做过的事、学到的东西，以及偶尔的胡思乱想。
+        </p>
+        <p>
+          把下面的文字换成你自己的故事吧：在哪里读书或工作、为什么开始写代码、正在做什么有趣的事情。
+          个人网站的好处就是——完全由你说了算。
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">我在做什么</h2>
+      <div class="skill-list">
+        <span class="tag" style="font-size:.9rem; padding:6px 14px">Web 前端</span>
+        <span class="tag" style="font-size:.9rem; padding:6px 14px">TypeScript</span>
+        <span class="tag" style="font-size:.9rem; padding:6px 14px">开源折腾</span>
+        <span class="tag" style="font-size:.9rem; padding:6px 14px">写作</span>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">联系我</h2>
+      <div class="card">
+        <p>
+          欢迎通过邮件联系我：
+          <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        </p>
+        <p>
+          GitHub：
+          <a href={SITE.github} target="_blank" rel="noopener">{SITE.github}</a>
+        </p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
