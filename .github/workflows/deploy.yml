@@ -28,7 +28,10 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        # 使用 npm install 而不是 npm ci：
+        # 本地 npm 生成的 lockfile 偶尔会漏掉其他平台的可选依赖（如 sharp 的 @emnapi 包），
+        # npm install 会在 CI 机器上自动补齐，避免部署失败。
+        run: npm install --no-audit --no-fund
 
       - name: Build site
         run: npm run build
