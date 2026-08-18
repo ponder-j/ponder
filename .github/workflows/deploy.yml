@@ -42,11 +42,6 @@ jobs:
       - name: Add .nojekyll
         run: touch dist/.nojekyll
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-        with:
-          static_site_generator: astro
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
